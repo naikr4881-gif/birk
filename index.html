@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For You, On Your Day</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div class="stage bg-wine" id="scene-1">
+    <div class="scene active">
+      <div class="eyebrow">A letter, sealed just for you</div>
+      <div class="envelope-wrap" style="margin-top:18px;">
+        <div class="envelope" id="envelope">
+          <div class="letter-peek">
+            <h1 class="headline">HAPPY BIRTHDAY,<br><em>MY FRIEND</em></h1>
+          </div>
+          <div class="flap"></div>
+          <div class="seal" id="sealBtn" onclick="openEnvelope()">✦</div>
+        </div>
+      </div>
+      <p class="tap-hint" id="tapHint">tap the seal to open</p>
+      <div id="scene1Continue" style="display:none; margin-top:8px;">
+        <p class="quote">"Every moment with you is a gift, and today we celebrate the greatest gift of all — you."</p>
+        <button class="btn" onclick="goTo(2)">Begin the journey</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="stage bg-parchment" id="scene-2" style="display:none;">
+    <div class="scene">
+      <div class="eyebrow" style="color:#a97a36;">Keepsakes</div>
+      <h2 class="section-title">A Deck of Saved Days</h2>
+      <p class="section-sub">Tap the top polaroid to flip through the memories</p>
+
+      <div class="keepsake-stack-container" id="keepsakeContainer">
+        <div class="keepsake-photo-card" onclick="cycleKeepsakeCard(this, 'photo1.jpeg', 'M1')">
+          <div class="card-img-window">
+            <img id="photo1" src="c:\Users\tvish\OneDrive\Pictures\photo1.jpeg" alt="Memory One"
+              onerror="handleImageError(this, 'M1')">
+          </div>
+          <span class="card-handwritten-note">Our favorite morning.</span>
+        </div>
+        <div class="keepsake-photo-card" onclick="cycleKeepsakeCard(this, 'photo2.jpeg', 'M2')">
+          <div class="card-img-window">
+            <img id="photo2" src="c:\Users\tvish\OneDrive\Pictures\photo2.jpeg" alt="Memory Two"
+              onerror="handleImageError(this, 'M2')">
+          </div>
+          <span class="card-handwritten-note">When we laughed until it hurt.</span>
+        </div>
+        <div class="keepsake-photo-card" onclick="cycleKeepsakeCard(this, 'photo3.jpeg', 'M3')">
+          <div class="card-img-window">
+            <img id="photo3" src="c:\Users\tvish\OneDrive\Pictures\photo3.jpeg" alt="Memory Three"
+              onerror="handleImageError(this, 'M3')">
+          </div>
+          <span class="card-handwritten-note">The quiet moments.</span>
+        </div>
+        <div class="keepsake-photo-card" onclick="cycleKeepsakeCard(this, 'photo4.jpeg', 'M4')">
+          <div class="card-img-window">
+            <img id="photo4" src="c:\Users\tvish\OneDrive\Pictures\photo4.jpeg" alt="Memory Four"
+              onerror="handleImageError(this, 'M4')">
+          </div>
+          <span class="card-handwritten-note">Forever my favorite smile.</span>
+        </div>
+      </div>
+
+      <p class="caption">This smile... my forever favourite</p>
+      <button class="btn-ghost dark" onclick="goTo(3)" style="margin-top: 35px;">Continue</button>
+    </div>
+  </div>
+
+  <div class="stage bg-night" id="scene-3" style="display:none;">
+    <div class="scene">
+      <div class="eyebrow" style="color:#b8a3cf;">A little light</div>
+      <div class="script-title">Light Up My Life</div>
+      <p class="script-sub">tap the lantern</p>
+      <div class="lantern-wrap" id="lanternWrap" onclick="turnLightsOn()">
+        <div class="lantern-string"></div>
+        <div class="lantern" id="lantern"></div>
+      </div>
+      <p class="lit-message" id="litMessage">You are the light in every one of my ordinary days — turning them into
+        something I want to remember.</p>
+      <button class="btn-ghost" onclick="goTo(4)">Continue</button>
+    </div>
+  </div>
+
+  <div class="stage bg-rose" id="scene-4" style="display:none;">
+    <div class="scene">
+      <div class="eyebrow">One wish</div>
+      <h2 class="section-title" style="color:var(--cream); font-style:italic;">Let's Celebrate</h2>
+      <div class="cake-wrap" id="cakeWrap" onclick="blowCandle()">
+        <div class="candle" id="candle">
+          <div class="flame" id="flame"></div>
+        </div>
+        <div class="tier tier-1"></div>
+        <div class="tier tier-2"></div>
+        <div class="tier tier-3"></div>
+      </div>
+      <p class="blown-msg" id="blownMsg">Make a wish, my love — and let this be the best year yet.</p>
+      <button class="btn-ghost" onclick="goTo(5)">One last thing</button>
+    </div>
+  </div>
+
+  <div class="stage bg-parchment" id="scene-5" style="display:none;">
+    <div class="scene">
+      <div class="letter-banner">Happy Birthday, Madam Ji</div>
+      <div class="letter-paper">
+        <h3>Dear Madam Ji,</h3>
+        <p>On this special day, I want to take a moment to celebrate not just your birthday, but the incredible person
+          you are. Your presence lights up every room you enter, just like how you've lit up our lives.</p>
+        <p>Your kindness, wisdom, and beautiful spirit inspire everyone around you. You have a magical way of making
+          ordinary moments feel extraordinary, and today is all about celebrating the magic that is uniquely you.</p>
+        <p>May this new year of your life be filled with endless joy, beautiful surprises, and all the happiness your
+          heart can hold. You deserve nothing but the very best that life has to offer.</p>
+        <p style="font-style:italic;">Wishing you the most wonderful birthday.</p>
+        <p class="sign">With effect, always</p>
+      </div>
+      <p class="small-note">just made for you</p>
+    </div>
+  </div>
+
+  <div class="progress-dots">
+    <div class="dot active" data-i="1"></div>
+    <div class="dot" data-i="2"></div>
+    <div class="dot" data-i="3"></div>
+    <div class="dot" data-i="4"></div>
+    <div class="dot" data-i="5"></div>
+  </div>
+
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <div class="lightbox-content-wrap" onclick="event.stopPropagation()">
+      <div id="lightboxFallback" style="display:none;" class="img-fallback-box"></div>
+      <img id="lightboxImg" src="" alt="Memory preview" onerror="handleLightboxError(this)">
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
